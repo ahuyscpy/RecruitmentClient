@@ -1,0 +1,115 @@
+
+
+.navbar{
+    display: flex;
+    padding: 0 20px;
+    background-color: #000d2c;
+    .navbar_icon{
+        padding: 10px 0;
+        width: 85px;
+        
+        .navbar-logo{
+            width: 100%;
+        }
+    }
+    .category{
+        display: flex;
+        flex: 1;
+        margin-left: 70px;
+        margin-right: 10px;
+        .active_category{
+            background-color: #598b8b;
+            .content{
+                color: #85cc7e !important;
+            }
+        }
+        
+        .career{
+            display: flex;
+            text-decoration: none;
+            margin-right: 5px;
+            .content{
+                color: #fff;
+                font-size: 1rem;
+                padding: 22px 16px 0 16px;
+
+            }
+            
+        }
+        .career :hover{
+            background-color: #598b8b;
+            color: #85cc7e;
+            
+        }
+        
+        
+        .branch{
+            display: flex;
+            text-decoration: none;
+            margin-right: 5px;
+            .content{
+                color: #fff;
+                font-size: 1rem;
+                padding: 22px 16px 0 16px;
+
+            }
+        }
+        .branch :hover{
+            background-color: #598b8b;
+            color: #85cc7e;
+          
+        }
+
+        .account{
+            display: flex;
+            text-decoration: none;
+            
+            .content{
+                color: #fff;
+                font-size: 1rem;
+                padding: 22px 16px 0 16px;
+
+            }
+        }
+        .account :hover{
+            background-color: #598b8b;
+            color: #85cc7e;
+          
+        }
+    }
+
+    .catalog{
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 20px;
+        padding-right: 100px;
+        
+        .user{
+            margin-bottom: 15px;
+            display: flex;
+            text-decoration: none;
+            padding-left: 18px;
+            .icon_user{
+                font-size: 1.4rem;
+                margin-right: 6px;
+                margin-top: 5px;
+                color: #dfe0e4;
+            }
+            
+            .user_content{
+                color: #dfe0e4;
+                font-size: 1rem;
+            }
+            
+            .separation{
+                padding-left: 10px;
+                font-size: 1.2rem;
+                color: #dfe0e4;
+
+            }
+        }
+        
+        
+    }
+}
+

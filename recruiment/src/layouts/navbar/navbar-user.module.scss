@@ -1,0 +1,146 @@
+.navbar{
+    display: flex;
+    padding: 0 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #777;
+    .navbar_icon{
+        padding: 10px 0;
+        width: 85px;
+        .navbar_logo{
+            width: 100%;
+        }
+    }
+    .catalog{
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 20px;
+        flex: 1;
+        padding-right: 100px;
+        .location{
+            display: flex;
+            text-decoration: none;
+            margin-bottom: 15px;
+            
+            .location_content{
+                color: #333;
+                font-size: 1rem;
+                padding-top: 2px;
+            }
+            .icon_search{
+                font-size: 1.4rem;
+                margin-right: 6px;
+                color: #000;
+            }
+            .separation{
+                padding-left: 10px;
+                font-size: 1.2rem;
+            }
+        }
+
+        .company{
+            margin-bottom: 15px;
+            display: flex;
+            text-decoration: none;
+            padding-left: 18px;
+            .icon_company{
+                font-size: 1.4rem;
+                margin-right: 6px;
+                color: #000;
+            }
+            .company_content{
+                color: #333;
+                font-size: 1rem;
+                padding-top: 2px;
+            }
+            .separation{
+                padding-left: 10px;
+                font-size: 1.2rem;
+            }
+        }
+
+        .chat{
+            margin-bottom: 15px;
+            display: flex;
+            text-decoration: none;
+            padding-left: 18px;
+            position: relative;
+            .icon_chat{
+                font-size: 1.4rem;
+                margin-right: 6px;
+                color: #000;
+            }
+            .separation{
+                padding-left: 10px;
+                font-size: 1.2rem;
+            }
+            .count{
+                position: absolute;
+                color: white;
+                background-color: red;
+                padding: 3px;
+                font-size: 0.6rem;
+                border-radius: 7px;
+                top: 8px;
+                left: 33px;
+                display: none;
+            }
+            .active{
+                display: block;
+            }
+        }
+
+        .notification{
+            margin-bottom: 15px;
+            display: flex;
+            text-decoration: none;
+            padding-left: 18px;
+            position: relative;
+            .icon_notification{
+                font-size: 1.4rem;
+                margin-right: 6px;
+                color: #000;
+            }
+            .separation{
+                padding-left: 10px;
+                font-size: 1.2rem;
+            }
+            .count{
+                position: absolute;
+                color: white;
+                background-color: red;
+                padding: 3px;
+                font-size: 0.6rem;
+                border-radius: 7px;
+                top: 8px;
+                left: 33px;
+                display: none;
+            }
+            .active{
+                display: block;
+            }
+        }
+
+        .user{
+            margin-bottom: 15px;
+            display: flex;
+            text-decoration: none;
+            padding-left: 18px;
+            .icon_user{
+                font-size: 1.4rem;
+                margin-right: 6px;
+                color: #000;
+            }
+            .user_content{
+                color: #333;
+                font-size: 1rem;
+                padding-top: 2px;
+            }
+            .separation{
+                padding-left: 10px;
+                font-size: 1.2rem;
+            }
+        }
+        
+    }
+}
+

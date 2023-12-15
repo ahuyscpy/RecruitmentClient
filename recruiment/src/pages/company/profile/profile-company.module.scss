@@ -1,0 +1,376 @@
+
+
+.wrapper{
+    width: 1200px;
+    margin-left: 168px;
+    position: relative;
+    margin-top: 5px;
+    .image{
+        margin-bottom: 70px;
+        position: relative;
+
+        .coverimage{
+            background-color: #eaf1f6;
+            padding: 2px;
+            border: 1px solid #d8dbe4;
+            height: 254px;
+            .coverimage_image{
+                width: 100%;
+                max-height: 100%;
+            }
+            .coverimage_icon{
+                position: absolute;
+                font-size: 4rem;
+                left: 50%;
+                top: 50%;
+                display: none;
+            }
+        }
+        .coverimage:hover{
+            .coverimage_icon{
+                display: block;
+            }
+        }
+        .avatar{
+            background-color: white;
+            border: 1px solid #d7d7db;
+            border-radius: 5px;
+            align-items: center;
+            justify-content: center;
+            line-height: 24px;
+            width: 160px;
+            height: 160px;
+            position: absolute;
+            left: 30px;
+            bottom: -40px;
+            padding: 20px;
+            display: flex;
+            .avatar_image{
+                width: 100%;
+                align-items: center;
+                max-height: 100%;
+            }
+            .avatar_icon{
+                position: absolute;
+                font-size: 3rem;
+                left: 55px;
+                top: 55px;
+                display: none;
+                // z-index: 999;
+            }
+        }
+        .avatar:hover{
+            .avatar_icon{
+                display: block;
+            }
+        }
+        
+    }
+    .follow{
+        position: absolute;
+        right: 40px;
+        top: 300px;
+        margin-left: 50px;
+        
+    }
+    .name{
+        margin-left: 20px;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #0069db;
+        margin-bottom: 20px;
+    }
+    .editName{
+        display: flex;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        .editName_input{
+            margin-right: 20px;
+        }
+    }
+    .description{
+        margin-left: 20px;
+       .content{
+        font-size: 1.1rem;
+        font-weight: bolder;
+        color: #6d7a85;
+        .editDescription{
+            margin-left: 20px;
+        }
+        
+       }
+       .scale{
+           margin-top: 40px;
+           display: flex;
+            .scale_icon{
+                font-size: 2rem;
+            }
+            .scale_title{
+                font-size: 1.4rem;
+                font-weight: bolder;
+                padding-left: 14px;
+                color: #111;
+                span{
+                    color: #555;
+                }
+            }
+       }
+       .contact{
+            margin-top: 40px;
+            display: flex;
+           .contact_icon{
+            font-size: 2rem;
+           }
+           .contact_title{
+            font-size: 1.4rem;
+            font-weight: bolder;
+            padding-left: 14px;
+            color: #111;
+                span{
+                    color: #555;
+                }
+            }
+       }
+       .images{
+            margin-top: 40px;
+            position: relative;
+            .images_title{
+                font-size: 1.4rem;
+                font-weight: bolder;
+                margin-bottom: 20px;
+                margin-left: 50px;
+            }
+            .images_icon{
+                position: absolute;
+                font-size: 2rem;
+                top: 0;
+
+            }
+            .add_images{
+                position: absolute;
+                top: 7px;
+                left: 240px;
+                font-size: 1.4rem;
+            }
+            .images_list{
+                padding: 10px 0;
+                display: flex;
+                list-style: none;
+                overflow: hidden    ;
+                width: 100% !important;
+                // position: relative;
+                
+                .next_image{
+                    position: absolute;
+                    z-index: 2;
+                    height: 200px;
+                    background-color: #fff;
+                    opacity: .3;
+                    right: 0;
+                    .icon_next{
+                        font-size: 2rem;
+                        color: #111;
+                        align-items: center;
+                        margin-top: 90px;
+                    }
+                }
+                .next_image:hover{
+                    opacity: 0.9;
+                    cursor: pointer;
+                }
+                .prev_image{
+                    position: absolute;
+                    z-index: 2;
+                    height: 200px;
+                    background-color: #fff;
+                    opacity: .3;
+                    left: 0;
+                    .icon_prev{
+                        font-size: 2rem;
+                        color: #111;
+                        align-items: center;
+                        margin-top: 90px;
+                    }
+                }
+                .prev_image:hover{
+                    opacity: 0.9;
+                    cursor: pointer;
+                }
+                .item{
+                    background-color: white;
+                    border: 1px solid #0069DB;
+                    border-radius: 5px;
+                    align-items: center;
+                    justify-content: center;
+                    width: 200px;
+                    height: 200px;
+                    padding: 10px;
+                    margin-right: 14px;
+                    position: relative;
+                    display: flex;
+                    z-index: 1;
+                    .item_image{
+                        width: 10rem;
+                        align-items: center;
+                        max-height: 100%;
+                    }
+                    .images_delete{
+                        font-size: 1.4rem;
+                        position: absolute;
+                        color: red;
+                        top: 6px;
+                        right: 6px;
+                    }
+                }
+            }
+            
+       }
+       .recruiments{
+           padding-top: 40px;
+           padding-bottom: 30px;
+           
+           h3{
+            font-size: 1.6rem;
+            font-weight: bolder;
+            margin-bottom: 5px;
+           }
+           p{
+               color: #717e89;
+           }
+           .job_list{
+               list-style: none;
+               padding-left: 0;
+               .job{
+                display: flex;
+                background-color: #f5fcff;
+                border: 1px solid #0069db47;
+                border-radius: 5px;
+                margin-top: 10px;
+                .job_image{
+                    background-color: white;
+                    border: 1px solid #d7d7db;
+                    border-radius: 5px;
+                    align-items: center;
+                    justify-content: center;
+                    line-height: 24px;
+                    width: 140px;
+                    height: 140px;
+                    padding: 20px;
+                    display: flex;
+                    margin: 20px 30px;
+                    .image{
+                        width: 100%;
+                        align-items: center;
+                        max-height: 100%;
+                        margin-bottom: 0;
+                    }
+                }
+                .job_content{
+                    flex: 1;
+                    padding: 20px 0;
+                    
+                    .title{
+                        display: flex;
+                        justify-content: space-between;
+                        h2{
+                            font-size: 1.8rem;
+                            font-weight: bolder;
+                            color: #0078e4;
+                            max-width: 650px;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+                        .date{
+                            margin-right: 30px;
+                            font-size: 1.2rem;
+                            position: relative;
+                            color: #777;
+                            .date_icon{
+                                font-size: 1.4rem;
+                                position: absolute;
+                                left: -40px;
+                                top: 4px;
+                            }
+                        }
+                    }
+                    .company{
+                        font-size: 1.3rem;
+                        color: #121416;
+                        margin-top: -10px;
+                    }
+                    .branch{
+                        font-size: 1rem;
+                        color: #6c757d;
+                        padding: 5px 0;
+                    }
+                    .salary{
+                        font-size: 1rem;
+                        color: #6c757d;
+                    }
+                }
+               }
+               .job:hover{
+                box-shadow: 0 1px 10px 0 rgb(0 0 0 / 10%);
+               }
+           }
+       }
+       
+
+       .location{
+           margin-top: 30px;
+           position: relative;
+           .title{
+                font-size: 1.4rem;
+                font-weight: bolder;
+                margin-bottom: 20px;
+                margin-left: 35px;
+               
+           }
+           .icon{
+            position: absolute;
+            font-size: 2rem;
+            top: 4px;
+            }
+            .icon_plus{
+                position: absolute;
+                font-size: 1.4rem;
+                top: 7px; 
+                left: 175px;
+            }
+            ul{
+                list-style: none;
+                padding: 0;
+                li{
+                    padding: 10px;
+                    border: 1px solid #f1f1f3;
+                    margin-bottom: 10px;
+                    position: relative;
+                   h2{
+                        font-size: 1.4rem;
+                        color: #0069DB;
+                        margin-bottom: 5px;
+                   }
+                   
+                   p{
+                       font-size: 1.1rem;
+                       color: #333;
+                       font-weight: normal;
+                       margin-bottom: 0;
+                   }
+                   .icon_delete_branch{
+                        position: absolute;
+                        font-size: 1.4rem;
+                        color: red;
+                        right: 20px;
+                        top: 35px;
+                   }
+               }
+            }
+            
+       }
+       .blank{
+           height: 500px;
+       }
+    }
+}

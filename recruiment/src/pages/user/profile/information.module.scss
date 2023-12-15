@@ -1,0 +1,86 @@
+.wrapper{
+    .header{
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        .catalog{
+            h3{
+                font-size: 2.1rem;
+                margin-bottom: 6px;
+            }
+            p{
+                font-size: 1.2rem;
+            }
+        }
+        .avatar{
+            background-color: white;
+                border: 1px solid #d7d7db;
+                border-radius: 80px;
+                align-items: center;
+                width: 120px;
+                height: 120px;
+                padding: 20px;
+                display: flex;
+                margin-right: 50px;
+            .image{
+                width: 100%;
+                align-items: center;
+                max-height: 100%;
+            }
+            
+        }
+        .avatar:hover .icon{
+            display: block;
+        }
+        .icon{
+            font-size: 1.5rem;
+            position: absolute;
+            right: 92px;
+            top: 50px;
+            display: none;
+        }
+        
+    }
+
+    .body{
+        margin-top: 20px;
+        .list{
+            list-style: none;
+            margin-bottom: 0;
+            padding-left: 0;
+            .item{
+                display: flex;
+                justify-content: space-between;
+                margin-right: 30px;
+                padding: 15px 0 30px 0;
+                border-bottom: 1px solid #e6e6e6;
+                .title{
+                    font-size: 1.2rem;
+                    margin-right: 40px;
+                    width: 180px;
+                }
+                .content{
+                    font-size: 1.2rem;
+                    flex: 1;
+                    margin-right: 50px;
+                }
+                .select{
+                    width: 100%;
+                }
+                
+            }
+        }
+    }
+    .change{
+        margin: 20px 0 20px 350px;
+    }
+    .save{
+        margin: 20px 0 20px 320px;
+        float: left;
+
+    }
+    .cancel{
+        margin: 20px 0 20px 40px;
+    }
+    
+}

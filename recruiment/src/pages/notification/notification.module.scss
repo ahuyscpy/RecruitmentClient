@@ -1,0 +1,30 @@
+.container{
+    background-color: #f0f2f5;
+    .wrapper{
+        width: 600px;
+        margin: auto;
+        h1{
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bolder;
+            // display: block;
+            padding-top: 20px;
+        }
+            .item_notify{
+                background-color: #fff;
+                border-radius: 5px;
+                padding: 10px 20px;
+                margin-bottom: 20px;
+                box-shadow: 1px 1px #999;
+                p{
+                    font-size: 1rem;
+                    margin: 0;
+                }
+                .time{
+                    font-size: .8rem;
+                    color: #3c8bf3;
+                }
+            }
+        
+    }
+}

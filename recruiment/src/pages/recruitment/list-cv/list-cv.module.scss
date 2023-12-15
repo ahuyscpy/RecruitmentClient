@@ -1,0 +1,24 @@
+.wrapper{
+    margin: 30px 100px;
+    
+    .title{
+        font-size: 2rem;
+    }
+    .search_bar{
+        padding: 15px 20px;
+        justify-content: space-between;
+        display: flex;
+        background-color: #f7f7f7;
+        margin-bottom: 30px;
+        .search{
+            display: flex;
+            margin-right: 30px;
+            .search_input{
+                margin-right: 20px;
+                width: 500px;
+                padding: 8px 15px;
+            }
+        }
+    }
+
+}  

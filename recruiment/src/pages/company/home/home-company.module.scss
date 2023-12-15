@@ -1,0 +1,118 @@
+.container{
+    width: 1000px;
+    margin: auto;
+    padding-top: 20px;
+    h1{
+        font-size: 2.3rem;
+        font-weight: bolder;
+    }
+    .banner{
+        .banner_image{
+            width: 100%;
+        }
+    }
+    .wrapper{
+        margin-top: 10px;
+        .header{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+    
+            h3{
+                font-size: 1.6rem;
+                font-weight: bolder;
+                margin-bottom: 5px;
+            }
+            .search{
+                margin-bottom: 5px;
+                width: 400px;
+                .Input{
+                    width: 100%;
+                    border-radius: 5px;
+                }
+            }
+        }
+        // h3{
+        //     font-size: 1.6rem;
+        //     font-weight: bolder;
+        //     margin-bottom: 5px;
+        //     margin-top: 50px;
+        //    }
+        p{
+               color: #717e89;
+           }
+        .recruitment_list{
+            padding-left: 0;
+            .recruitment_item{
+                display: flex;
+                background-color: #f5fcff;
+                border: 1px solid #0069db47;
+                border-radius: 5px;
+                margin-top: 10px;
+                .item_image{
+                    background-color: white;
+                    border: 1px solid #d7d7db;
+                    border-radius: 5px;
+                    align-items: center;
+                    justify-content: center;
+                    line-height: 24px;
+                    width: 140px;
+                    height: 140px;
+                    padding: 20px;
+                    display: flex;
+                    margin: 20px 30px;
+                    .image{
+                        width: 100%;
+                        align-items: center;
+                        max-height: 100%;
+                        margin-bottom: 0;
+                    }
+                }
+                .item_content{
+                    flex: 1;
+                    padding: 20px 0;
+                    .title{
+                        display: flex;
+                        justify-content: space-between;
+                        h2{
+                            font-size: 1.8rem;
+                            font-weight: bolder;
+                            color: #0078e4;
+                            max-width: 650px;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+                        .date{
+                            margin-right: 30px;
+                            font-size: 1.2rem;
+                            position: relative;
+                            color: #777;
+                            .date_icon{
+                                font-size: 1.4rem;
+                                position: absolute;
+                                left: -40px;
+                                top: 4px;
+                            }
+                        }
+                    }
+                    .company{
+                        font-size: 1.3rem;
+                        color: #121416;
+                        margin-top: -10px;
+                    }
+                    .branch{
+                        font-size: 1rem;
+                        color: #6c757d;
+                        padding: 5px 0;
+                    }
+                    .salary{
+                        font-size: 1rem;
+                        color: #6c757d;
+                    }
+                }
+            }
+        }
+    }
+    
+}
