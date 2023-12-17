@@ -494,27 +494,31 @@ function ProfileCompany() {
         {/* <div className={styles.follow}>
 
                 </div> */}
-        {user?.role == "user" && isFollow == false ? (
-          <div className={styles.follow}>
-            <Button
-              onClick={handleFollowCompany}
-              type="primary"
-              style={styles.button}
-            >
-              Follow
-            </Button>
+        {user?.role !== 'company' &&
+          <div>
+            {user?.role == "user" && isFollow == false ? (
+              <div className={styles.follow}>
+                <Button
+                  onClick={handleFollowCompany}
+                  type="primary"
+                  style={styles.button}
+                >
+                  Follow
+                </Button>
+              </div>
+            ) : (
+              <div className={styles.follow}>
+                <Button
+                  onClick={handleUnFollowCompany}
+                  type="primary"
+                  style={styles.button}
+                >
+                  UnFollow
+                </Button>
+              </div>
+            )}
           </div>
-        ) : (
-          <div className={styles.follow}>
-            <Button
-              onClick={handleUnFollowCompany}
-              type="primary"
-              style={styles.button}
-            >
-              UnFollow
-            </Button>
-          </div>
-        )}
+        }
 
         {user?.role == "company" ? (
           !editName ? (
