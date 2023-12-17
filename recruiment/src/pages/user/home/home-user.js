@@ -20,7 +20,10 @@ import { MdDateRange, MdDelete } from "react-icons/md";
 import NavbarUser from "../../../layouts/navbar/navbar-user";
 import Footer from "../../../layouts/footer/footer";
 import styles from "./home-user.module.scss";
-import banner from "../../../assets/images/homebanner.jpg";
+import bannerFirst from "../../../assets/images/banner1.png";
+import bannerSecond from "../../../assets/images/banner2.png";
+import bannerThird from "../../../assets/images/banner3.png";
+const banner = [bannerFirst, bannerSecond, bannerThird];
 function HomeUser() {
   const [listRecruitments, setListRecruitments] = useState();
   const [pagination, setPagination] = useState({
