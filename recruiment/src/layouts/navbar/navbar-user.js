@@ -3,8 +3,10 @@ import styles from './navbar-user.module.scss'
 import { BsSearch,BsBuilding } from "react-icons/bs";
 import { IoMdChatbubbles, IoMdNotifications,FaUserCircle} from "react-icons/io";
 import { FaRegUserCircle} from "react-icons/fa";
+import company from '../../assets/images/company.png'
 
 import { Link } from 'react-router-dom';
+import { Image } from 'antd';
 function NavbarUser() {
     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -16,13 +18,13 @@ function NavbarUser() {
             <div className={styles.catalog}>
                 <Link to='/search-recruitment' className={styles.location}>
                     <BsSearch className={styles.icon_search}/>
-                    <div className={styles.location_content}>Tìm kiếm việc làm</div>
+                    <div className={`${styles.location_content} font-semibold`}>Tìm kiếm việc làm</div>
                     <div className={styles.separation}>|</div>
                 </Link>
                 
                 <Link to='/search-company' className={styles.company}>
-                    <BsBuilding className={styles.icon_company}/>
-                    <div className={styles.company_content}>Công ty</div>
+                    <Image width={30} height={30} preview={false} src={company}/>
+                    <div className={`${styles.company_content} font-semibold`}>Công ty</div>
                     <div className={styles.separation}>|</div>
                 </Link>
 
@@ -39,7 +41,7 @@ function NavbarUser() {
                 </Link>
                 <Link to={'/user/profile/information/' + user.id} className={styles.user}>
                     <FaRegUserCircle className={styles.icon_user}/>
-                    <div className={styles.user_content}>Tài khoản</div>
+                    <div className={`${styles.user_content} font-semibold`}>Tài khoản</div>
                     <div className={styles.separation}>|</div>
                 </Link>
             </div>
