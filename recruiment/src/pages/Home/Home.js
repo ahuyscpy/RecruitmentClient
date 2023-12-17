@@ -34,7 +34,7 @@ function Home() {
   const getSearchInformation = async () => {
     await axios
       .get(
-        `https://localhost:5001/api/Companies/GetAllRecruitmentPaging?PageIndex=1&PageSize=10`
+        `https://localhost:5001/api/Companies/GetAllRecruitmentPaging?PageIndex=${pagination.page}&PageSize=${[pagination.limit]}`
       )
       .then((res) => {
         console.log(res.data.resultObj);
@@ -121,7 +121,6 @@ function Home() {
       <Navbar />
       <div className={styles.wrapper}>
         <div className={styles.banner}>
-
           <Carousel
             draggable
             autoplay
