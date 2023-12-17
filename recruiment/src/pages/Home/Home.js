@@ -22,10 +22,15 @@ import bannerThird from "../../assets/images/banner3.png";
 const banner = [bannerFirst, bannerSecond, bannerThird];
 function Home() {
   const [listRecruitments, setListRecruitments] = useState();
+  const [pagination, setPagination] = useState({
+    total: 0,
+    page: 1,
+    limit: 10
+  });
 
   useEffect(() => {
     getSearchInformation();
-  }, []);
+  }, [pagination.page]);
   const getSearchInformation = async () => {
     await axios
       .get(
@@ -33,7 +38,12 @@ function Home() {
       )
       .then((res) => {
         console.log(res.data.resultObj);
-        setListRecruitments(res.data.resultObj.items);
+        setListRecruitments([...(listRecruitments ?? []),...res.data.resultObj.items]);
+        setPagination({
+          ...pagination,
+          page: res.data.resultObj.pageIndex,
+          total: res.data.resultObj.totalRecords
+        })
       });
     // setListRecruitments(GetAllRecruitmentPaging.data.resultObj.items);
   };
@@ -182,7 +192,12 @@ function Home() {
               : ""}
           </Row>
           <div className="flex justify-center mt-5">
-            <Button size="large">Xem Thêm</Button>
+            <Button size="large" onClick={()=>{
+              setPagination({
+                ...pagination,
+                page: pagination.page + 1
+              })
+            }}>Xem Thêm</Button>
           </div>
         </div>
       </div>
