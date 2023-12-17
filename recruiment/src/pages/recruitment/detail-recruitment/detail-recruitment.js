@@ -64,16 +64,16 @@ function DetailRecruitment() {
   }, []);
 
   const getRecruitment = async () => {
-    // await axios.get(`https://localhost:5001/api/Companies/GetRecruitmentById?id=${id}`).then(
-    //     res => {
-    //         if (res.data.isSuccessed) {
-    //             console.log(res.data.resultObj)
-    //             setRecruitment(res.data.resultObj);
+    await axios.get(`https://localhost:5001/api/Companies/GetRecruitmentById?id=${id}`).then(
+        res => {
+            if (res.data.isSuccessed) {
+                console.log(res.data.resultObj)
+                setRecruitment(res.data.resultObj);
 
-    //         }
-    //     }
-    // );
-    setRecruitment(GetRecruitmentById.data.resultObj);
+            }
+        }
+    );
+    // setRecruitment(GetRecruitmentById.data.resultObj);
   };
   const getUserInformation = async () => {
     await axios.get(`https://localhost:5001/api/Users/GetUserInformation?userId=${user.id}`).then(
