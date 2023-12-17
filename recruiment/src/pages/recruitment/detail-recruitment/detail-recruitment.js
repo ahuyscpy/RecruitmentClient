@@ -64,16 +64,16 @@ function DetailRecruitment() {
   }, []);
 
   const getRecruitment = async () => {
-    // await axios.get(`https://localhost:5001/api/Companies/GetRecruitmentById?id=${id}`).then(
-    //     res => {
-    //         if (res.data.isSuccessed) {
-    //             console.log(res.data.resultObj)
-    //             setRecruitment(res.data.resultObj);
+    await axios.get(`https://localhost:5001/api/Companies/GetRecruitmentById?id=${id}`).then(
+        res => {
+            if (res.data.isSuccessed) {
+                console.log(res.data.resultObj)
+                setRecruitment(res.data.resultObj);
 
-    //         }
-    //     }
-    // );
-    setRecruitment(GetRecruitmentById.data.resultObj);
+            }
+        }
+    );
+    // setRecruitment(GetRecruitmentById.data.resultObj);
   };
   const getUserInformation = async () => {
     await axios.get(`https://localhost:5001/api/Users/GetUserInformation?userId=${user.id}`).then(
@@ -389,7 +389,7 @@ function DetailRecruitment() {
                       className="!rounded-[6px]"
                       src={
                           "https://localhost:5001/avatars/" +
-                          recruitment.avatarPath
+                          recruitment?.userAvatar?.imagePath
                         }
                     />
                     <span className="block font-semibold text-[20px] truncate">
@@ -448,7 +448,8 @@ function DetailRecruitment() {
                       <Image
                         width={"80%"}
                         height={"80%"}
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/FPT_logo_2010.svg/800px-FPT_logo_2010.svg.png"
+                        src={"https://localhost:5001/avatars/" +
+                        userInformation?.avatarPath}
                       />
                     </div>
                     <span className="font-bold">
