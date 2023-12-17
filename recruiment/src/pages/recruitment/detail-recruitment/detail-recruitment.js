@@ -389,7 +389,7 @@ function DetailRecruitment() {
                       className="!rounded-[6px]"
                       src={
                           "https://localhost:5001/avatars/" +
-                          recruitment?.userAvatar?.imagePath
+                          recruitment?.avatarPath
                         }
                     />
                     <span className="block font-semibold text-[20px] truncate">
@@ -449,7 +449,7 @@ function DetailRecruitment() {
                         width={"80%"}
                         height={"80%"}
                         src={"https://localhost:5001/avatars/" +
-                        userInformation?.avatarPath}
+                        recruitment?.avatarPath}
                       />
                     </div>
                     <span className="font-bold">
