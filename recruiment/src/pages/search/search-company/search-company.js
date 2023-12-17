@@ -35,15 +35,15 @@ function SearchCompany() {
     getSearchInformation();
   }, []);
   const getSearchInformation = async () => {
-    await axios.get(`https://localhost:5001/api/Companies/GetAllCompany`).then(
-        res => {
-            console.log(res.data.resultObj)
-            setCompanyList(res.data.resultObj)
-            setCompanySearchList(res.data.resultObj)
-        }
-    );
-    // setCompanyList(GetAllCompany.data.resultObj);
-    // setCompanySearchList(GetAllCompany.data.resultObj);
+    // await axios.get(`https://localhost:5001/api/Companies/GetAllCompany`).then(
+    //     res => {
+    //         console.log(res.data.resultObj)
+    //         setCompanyList(res.data.resultObj)
+    //         setCompanySearchList(res.data.resultObj)
+    //     }
+    // );
+    setCompanyList(GetAllCompany.data.resultObj);
+    setCompanySearchList(GetAllCompany.data.resultObj);
   };
   function handleSearch(keyword) {
     if (keyword) {
@@ -112,11 +112,11 @@ function SearchCompany() {
                               src={address}
                               alt=""
                             />
-                            <Tag>
+                            {company?.branches?.length && <Tag>
                               {company?.branches?.map((city, index) =>
-                                index === 0 ? city : ", " + city
+                                index === 0 ? city.city : ", " + city.city
                               )}
-                            </Tag>
+                            </Tag>}
                           </div>
                         </div>
                         <div className="flex items-center space-x-1">
