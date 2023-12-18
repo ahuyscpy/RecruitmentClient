@@ -323,3 +323,94 @@ export const GetAllUser = {
     ],
   },
 };
+
+export const GetAllCompanyRecruitment = {
+  data: {
+    isSuccessed: true,
+    message: null,
+    resultObj: [
+      {
+        id: 1,
+        careers: ["Lập trình viên"],
+        branches: ["Đà Nẵng"],
+        name: "a",
+        rank: "Nhân viên",
+        experience: "Dưới 1 năm",
+        salary: 20000000,
+        education: "Cao đẳng / Đại học",
+        type: "Toàn thời gian",
+        expirationDate: "2023-12-19T03:16:51.679",
+        dateCreated: "2023-12-09T10:15:09.3649065",
+      },
+    ],
+  },
+};
+
+export const GetAllPersonChatChat = {
+  data: {
+    isSuccessed: true,
+    message: null,
+    resultObj: [
+      {
+        id: "364d3db2-8513-45dc-e0db-08dbf19eb263",
+        name: "Mai Huy",
+        avatarPath: "default-avatar.jpg",
+        lastContent: "Hôm nay",
+        dateCreated: "2023-03-03T00:00:00",
+      },
+    ],
+  },
+};
+
+export const GetAllChat = {
+  data: {
+    isSuccessed: true,
+    message: null,
+    resultObj: {
+      name: "Mai Huy",
+      avatarPath: "default-avatar.jpg",
+      content: [
+        {
+          content: "Hôm nay",
+          dateCreated: "2023-03-03T00:00:00",
+          performer: "done",
+        },
+      ],
+    },
+  },
+};
+
+export const GetAllCV = {
+  data: {
+    isSuccessed: true,
+    message: null,
+    resultObj: [
+      {
+        user: {
+          userId: "15d760da-4b38-406f-c311-08dbf862566e",
+          firstName: "Mai",
+          lastName: "Huy",
+          age: 18,
+          sex: 1,
+          address: "DN",
+          academicLevel: "Đại học",
+          email: "ahupy@gmail.com",
+          phoneNumber: "+84357842821",
+          userAvatar: {
+            id: 2,
+            fileSize: 0,
+            imagePath: "684f54ab-ace1-46ff-bb21-abc9cfce0c5a.png",
+            dateCreated: "2023-12-09T10:54:08.2232222",
+            caption: "Screenshot 2023-11-30 235211.png",
+            userId: "15d760da-4b38-406f-c311-08dbf862566e",
+          },
+        },
+        dateSubit: "2023-12-16T11:39:58.9015992",
+        filePath: "9314d51b-c90e-48ec-a5e5-d42170c2088b.pdf",
+        recruitmentId: 2,
+        userId: "15d760da-4b38-406f-c311-08dbf862566e",
+        recruitmentName: "Lập trình viên Java",
+      },
+    ],
+  },
+};

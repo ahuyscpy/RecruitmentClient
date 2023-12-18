@@ -1,14 +1,49 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import { Form, Input, Button, message, Modal, Select } from "antd";
+import { Form, Input, Button, message, Modal, Select, Image } from "antd";
 import NavbarCompany from "../../layouts/navbar/navbar-company";
 
 import styles from "./chat.module.scss";
 import logo from "../../assets/images/logo-facebook.png";
 import clsx from "clsx";
 import NavbarUser from "../../layouts/navbar/navbar-user";
+import { GetAllChat, GetAllPersonChatChat } from "../../mocks";
+import cty1 from "../../assets/images/cty1.jpeg";
+import cty2 from "../../assets/images/cty2.jpeg";
+import cty3 from "../../assets/images/cty3.jpeg";
+import cty4 from "../../assets/images/cty4.png";
 
+const listCompany = [
+  {
+    id: 432,
+    img: cty1,
+    name: "Lisod",
+    lastContent: "Hôm nay",
+    dateCreated: "2023-03-03T00:00:00",
+  },
+  {
+    id: 434,
+    img: cty2,
+    name: "Tomosia",
+    lastContent: "Hôm nay",
+    dateCreated: "2023-03-03T00:00:00",
+  },
+  {
+    id: 436,
+    img: cty3,
+    name: "Alaki",
+    lastContent: "Hôm nay",
+    dateCreated: "2023-03-03T00:00:00",
+  },
+  {
+    id: 438,
+    img: cty4,
+    name: "FPT",
+    lastContent: "Hôm nay",
+    dateCreated: "2023-03-03T00:00:00",
+  },
+];
 function Chat() {
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -32,6 +67,11 @@ function Chat() {
         setPersonChatSearchList(res.data.resultObj);
         getChatList(res.data.resultObj[0].id);
       });
+
+    // setPersonId(GetAllPersonChatChat.data.resultObj[0].id);
+    // setPersonChatList(GetAllPersonChatChat.data.resultObj);
+    // setPersonChatSearchList(GetAllPersonChatChat.data.resultObj);
+    // getChatList(GetAllPersonChatChat.data.resultObj[0].id);
   };
   const getChatList = async (id) => {
     if (user.role == "company") {
@@ -42,14 +82,16 @@ function Chat() {
         .then((res) => {
           setChatList(res.data.resultObj);
         });
+      // setChatList(GetAllChat.data.resultObj);
     } else {
       await axios
-        .get(
-          `https://localhost:5001/api/Companies/GetAllChat?userId=${user.id}&companyId=${id}&role=${user.role}`
-        )
-        .then((res) => {
-          setChatList(res.data.resultObj);
-        });
+      .get(
+        `https://localhost:5001/api/Companies/GetAllChat?userId=${user.id}&companyId=${id}&role=${user.role}`
+      )
+      .then((res) => {
+        setChatList(res.data.resultObj);
+      });
+      // setChatList(GetAllChat.data.resultObj);
     }
   };
   function timeCaculate(datetime) {
@@ -157,34 +199,37 @@ function Chat() {
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </div>
-            {personChatList
-              ? personChatList.map((person, index) => (
-                  <a
-                    className={clsx(
-                      styles.person_wrapper,
-                      person.id == personId ? styles.active : styles.invalid
-                    )}
-                    key={index}
-                    onClick={(e) => ChangeChatPerson(person.id, e)}
+            {[...(personChatList ?? []), ...listCompany].map(
+              (person, index) => (
+                <a
+                  className={clsx(
+                    styles.person_wrapper,
+                    person.id == personId ? styles.active : styles.invalid
+                  )}
+                  key={index}
+                  onClick={(e) => ChangeChatPerson(person.id, e)}
+                >
+                  <div
+                    className={`${styles.person_image_wrapper} !rounded-full overflow-hidden`}
                   >
-                    <div className={styles.person_image_wrapper}>
-                      <img
-                        className={styles.person_image}
-                        src={
-                          "https://localhost:5001/avatars/" + person.avatarPath
-                        }
-                      />
+                    <Image
+                      preview={false}
+                      src={
+                        person.img ??
+                        "https://localhost:5001/avatars/" + person.avatarPath
+                      }
+                    />
+                  </div>
+                  <div className={styles.info}>
+                    <h2>{person.name}</h2>
+                    <div className={styles.info_wrapper}>
+                      <p>{person.lastContent}</p>
+                      <span>{timeCaculate(person.dateCreated)}</span>
                     </div>
-                    <div className={styles.info}>
-                      <h2>{person.name}</h2>
-                      <div className={styles.info_wrapper}>
-                        <p>{person.lastContent}</p>
-                        <span>{timeCaculate(person.dateCreated)}</span>
-                      </div>
-                    </div>
-                  </a>
-                ))
-              : ""}
+                  </div>
+                </a>
+              )
+            )}
           </div>
           <div className={styles.chatbox}>
             <div className={styles.header}>

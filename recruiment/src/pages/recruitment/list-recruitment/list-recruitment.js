@@ -1,7 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import { Form, Button, Table, Modal, Select, message, DatePicker } from "antd";
+import {
+  Form,
+  Button,
+  Table,
+  Modal,
+  Select,
+  message,
+  DatePicker,
+  Tag,
+  Image,
+} from "antd";
 
 import NavbarCompany from "../../../layouts/navbar/navbar-company";
 import styles from "./list-recruitment.module.scss";
@@ -16,13 +26,18 @@ import {
   IoIosAddCircleOutline,
   IoIosAddCircle,
 } from "react-icons/io";
+import deleteIcon from "../../../assets/images/delete.png";
+import { GetAllCompanyRecruitment } from "../../../mocks";
 
 function ListRecruitment() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  // const user = JSON.parse(localStorage.getItem("user"));
+  const user = {
+    role: "company",
+  };
 
   const { Option } = Select;
   const navigate = useNavigate();
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
   const [recruitmentList, setRecruitmentList] = useState();
   const [recruitmentSearchList, setRecruitmentSearchList] = useState();
 
@@ -93,117 +108,183 @@ function ListRecruitment() {
           }))
         );
       });
+
+    // setRecruitmentList(
+    //   GetAllCompanyRecruitment.data.resultObj.map((row, index) => ({
+    //     key: index,
+    //     name: row.name,
+    //     rank: row.rank,
+    //     experience: row.experience,
+    //     salary: tranferPrice(row.salary),
+    //     education: row.education,
+    //     type: row.type,
+    //     date:
+    //       GetFormattedDate(row.dateCreated) +
+    //       " - " +
+    //       GetFormattedDate(row.expirationDate),
+    //     id: row.id,
+    //     careers: row.careers,
+    //     branches: row.branches,
+    //   }))
+    // );
+    // setRecruitmentSearchList(
+    //   GetAllCompanyRecruitment.data.resultObj.map((row, index) => ({
+    //     key: index,
+    //     name: row.name,
+    //     rank: row.rank,
+    //     experience: tranferPrice(row.experience),
+    //     salary: row.salary,
+    //     education: row.education,
+    //     type: row.type,
+    //     date:
+    //       GetFormattedDate(row.dateCreated) +
+    //       " - " +
+    //       GetFormattedDate(row.expirationDate),
+    //     id: row.id,
+    //     careers: row.careers,
+    //     branches: row.branches,
+    //   }))
+    // );
   };
 
   const columns = [
     {
       title: "Tên",
       dataIndex: "name",
-      // width: 300
+      width: 150,
+      fixed: "left",
     },
     {
       title: "Nghành nghề",
       dataIndex: "careers",
-      // width: 300,
+      width: 200,
+      fixed: "left",
       render: (careers) => (
-        <>
-          {careers.map((career, index) => {
-            return (
-              <span key={index}>
-                {index === careers.length - 1 ? career : career + ", "}{" "}
-              </span>
-            );
-          })}
-        </>
+        <div className="flex">
+          <div className="mr-2 flex-1">
+            {careers.map((career, index) => {
+              return (
+                <span key={index} className=" font-semibold">
+                  {index === careers.length - 1 ? career : career + ", "}{" "}
+                </span>
+              );
+            })}
+          </div>
+
+          <div className="flex items-center space-x-1">
+            <IoIosAddCircleOutline
+              className="text-[18px]"
+              onClick={() => showModalAddCareer(careers.id)}
+            />
+            <IoIosRemoveCircleOutline
+              className="text-[18px]"
+              onClick={() => showModalRemoveCareer(careers.id)}
+            />
+          </div>
+        </div>
       ),
     },
     {
       title: "Cấp bậc",
       dataIndex: "rank",
-      // width: 300
+      width: 150,
     },
     {
       title: "Kinh nghiệm",
       dataIndex: "experience",
-      // width: 300
+      width: 300,
     },
     {
       title: "Mức Lương",
-      dataIndex: "salary",
-      // width: 300
+      render: (key) => <Tag color="red">{key.salary} VND</Tag>,
+      width: 160,
     },
     {
       title: "Học Vấn",
-      dataIndex: "education",
-      // width: 300
+      render: (key) => <Tag color="cyan">{key.education}</Tag>,
+      width: 200,
     },
     {
       title: "Loại công việc",
       dataIndex: "type",
-      // width: 300
+      width: 180,
     },
     {
       title: "Chi nhánh",
       dataIndex: "branches",
-      // width: 300,
+      width: 200,
       render: (branches) => (
-        <>
-          {branches.map((branch, index) => {
-            return (
-              <span index={index}>
-                {index === branches.length - 1 ? branch : branch + ", "}{" "}
-              </span>
-            );
-          })}
-        </>
+        <div className="flex">
+          <div className="mr-2 flex-1">
+            {branches.map((branch, index) => {
+              return (
+                <Tag index={index}>
+                  {index === branches.length - 1 ? branch : branch + ", "}{" "}
+                </Tag>
+              );
+            })}
+          </div>
+          <div className="flex items-center space-x-1">
+            <IoIosAddCircle
+              style={{ fontSize: "1.3rem" }}
+              onClick={() => showModalAddBranch(branches.id)}
+            />
+            <IoIosRemoveCircle
+              style={{ fontSize: "1.3rem" }}
+              onClick={() => showModalRemoveBranch(branches.id)}
+            />
+          </div>
+        </div>
       ),
     },
     {
       title: "Thời hạn ứng tuyển",
-      dataIndex: "date",
-      // width: 300
+      render: (key) => (
+        <div className="flex items-center space-x-2">
+          <span>{key.date}</span>
+
+          <MdOutlineAddAlarm
+            style={{ fontSize: "1.3rem", marginLeft: 18 }}
+            onClick={() => showModalExtenddDate(key.id)}
+          />
+        </div>
+      ),
+      width: 250,
+    },
+    {
+      title: "Danh sách CV",
+      render: (key) => (
+        <div
+          className="flex items-center space-x-2"
+          onClick={() => navigate(`list-cv/${key.id}`)}
+        >
+          <Button className="!flex items-center">
+            <span>Danh sách</span>
+            <GoListOrdered style={{ fontSize: "1.3rem", marginLeft: 18 }} />
+          </Button>
+        </div>
+      ),
+      width: 200,
     },
     {
       title: "Hành động",
-      width: 350,
-      fixed: 'right',
+      width: 150,
+      fixed: "right",
       render: (key) => {
         return (
-          <div className="flex items-center">
+          <div className="flex items-center space-x-4">
             <CgMoreO
               style={{ fontSize: "1.2rem" }}
               onClick={() => navigate(`detail/${key.id}`)}
             />
-            <GoListOrdered
-              onClick={() => navigate(`list-cv/${key.id}`)}
-              style={{ fontSize: "1.3rem", marginLeft: 18 }}
-            />
-            <IoIosAddCircleOutline
-              style={{ fontSize: "1.3rem", marginLeft: 18 }}
-              onClick={() => showModalAddCareer(key.id)}
-            />
-            <IoIosRemoveCircleOutline
-              style={{ fontSize: "1.3rem", marginLeft: 18 }}
-              onClick={() => showModalRemoveCareer(key.id)}
-            />
-            <IoIosAddCircle
-              style={{ fontSize: "1.3rem", marginLeft: 18 }}
-              onClick={() => showModalAddBranch(key.id)}
-            />
-            <IoIosRemoveCircle
-              style={{ fontSize: "1.3rem", marginLeft: 18 }}
-              onClick={() => showModalRemoveBranch(key.id)}
-            />
-
-            <MdOutlineAddAlarm
-              style={{ fontSize: "1.3rem", marginLeft: 18 }}
-              onClick={() => showModalExtenddDate(key.id)}
-            />
-            <AiTwotoneDelete
+            <Image
+              src={deleteIcon}
+              preview={false}
               onClick={() => {
                 onDeleteRecruitment(key.id);
               }}
-              style={{ color: "red", marginLeft: 18, fontSize: "1.2rem" }}
+              width={30}
+              height={30}
             />
           </div>
         );
@@ -452,7 +533,7 @@ function ListRecruitment() {
               columns={columns}
               dataSource={recruitmentList}
               pagination={{ pageSize: 5 }}
-              scroll={{ y: 300 }}
+              scroll={{ y: 300, x: 800 }}
             />
           )}
         </div>
