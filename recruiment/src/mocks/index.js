@@ -414,3 +414,62 @@ export const GetAllCV = {
     ],
   },
 };
+
+export const GetAllNotify = {
+  data: {
+    isSuccessed: true,
+    message: null,
+    resultObj: [
+      {
+        id: 51,
+        content: "Mai Huy vừa theo dõi công ty bạn",
+        dateCreated: "2023-12-18T00:58:23.3657057",
+      },
+      {
+        id: 41,
+        content: "Mai Huy vừa theo dõi công ty bạn",
+        dateCreated: "2023-12-17T23:47:03.4743404",
+      },
+      {
+        id: 1,
+        content: "Mai Huy vừa nộp CV vào bài tuyển dụng a",
+        dateCreated: "2023-12-09T10:25:34.9567466",
+      },
+      {
+        id: 1,
+        content: "Mai Huy vừa nộp CV vào bài tuyển dụng a",
+        dateCreated: "2023-12-09T10:25:34.9567466",
+      },
+      {
+        id: 1,
+        content: "Mai Huy vừa nộp CV vào bài tuyển dụng a",
+        dateCreated: "2023-12-09T10:25:34.9567466",
+      },
+      {
+        id: 1,
+        content: "Mai Huy vừa nộp CV vào bài tuyển dụng a",
+        dateCreated: "2023-12-09T10:25:34.9567466",
+      },
+      {
+        id: 1,
+        content: "Mai Huy vừa nộp CV vào bài tuyển dụng a",
+        dateCreated: "2023-12-09T10:25:34.9567466",
+      },
+      {
+        id: 1,
+        content: "Mai Huy vừa nộp CV vào bài tuyển dụng a",
+        dateCreated: "2023-12-09T10:25:34.9567466",
+      },
+      {
+        id: 1,
+        content: "Mai Huy vừa nộp CV vào bài tuyển dụng a",
+        dateCreated: "2023-12-09T10:25:34.9567466",
+      },
+      {
+        id: 1,
+        content: "Mai Huy vừa nộp CV vào bài tuyển dụng a",
+        dateCreated: "2023-12-09T10:25:34.9567466",
+      },
+    ],
+  },
+};

@@ -447,6 +447,7 @@ function DetailRecruitment() {
                     <div className="rounded-[15px] border-[1px] border-solid w-[100px] h-[100px] flex items-center justify-center">
                       <Image
                         width={"80%"}
+                        preview={false}
                         height={"80%"}
                         src={"https://localhost:5001/avatars/" +
                         recruitment?.avatarPath}
