@@ -1,7 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import { Form, Input, Button, message, Modal, Select } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  message,
+  Modal,
+  Select,
+  Row,
+  Col,
+  Card,
+  Image,
+  Tag,
+} from "antd";
 
 import NavbarCompany from "../../../layouts/navbar/navbar-company";
 import Navbar from "../../../layouts/navbar/navbar";
@@ -16,6 +28,9 @@ import { FcEditImage, FcAddImage, FcNext, FcPrevious } from "react-icons/fc";
 import { BsPlusCircle, BsCardImage } from "react-icons/bs";
 import Footer from "../../../layouts/footer/footer";
 import { GetCompanyInformation } from "../../../mocks";
+import imageCompany from "../../../assets/images/image-company.png";
+import contact from "../../../assets/images/contact.png";
+import memberCompany from "../../../assets/images/member-company.gif";
 
 function ProfileCompany() {
   const navigate = useNavigate();
@@ -52,23 +67,23 @@ function ProfileCompany() {
 
   const getCompanyInformation = async () => {
     var companyId;
-    await axios.get(`https://localhost:5001/api/Companies/GetCompanyInformation?companyId=${id}`).then(
-        res => {
-            if (res.data.isSuccessed) {
-                companyId = res.data.resultObj.companyId;
-                setCompanyInformation(res.data.resultObj)
-                setName(res.data.resultObj.name)
-                setDescription(res.data.resultObj.description)
-                setWorkerNumber(res.data.resultObj.workerNumber)
-                setContactName(res.data.resultObj.contactName)
-            }
-        }
-    );
-    // setCompanyInformation(GetCompanyInformation.data.resultObj);
-    // setName(GetCompanyInformation.data.resultObj.name);
-    // setDescription(GetCompanyInformation.data.resultObj.description);
-    // setWorkerNumber(GetCompanyInformation.data.resultObj.workerNumber);
-    // setContactName(GetCompanyInformation.data.resultObj.contactName);
+    // await axios.get(`https://localhost:5001/api/Companies/GetCompanyInformation?companyId=${id}`).then(
+    //     res => {
+    //         if (res.data.isSuccessed) {
+    //             companyId = res.data.resultObj.companyId;
+    //             setCompanyInformation(res.data.resultObj)
+    //             setName(res.data.resultObj.name)
+    //             setDescription(res.data.resultObj.description)
+    //             setWorkerNumber(res.data.resultObj.workerNumber)
+    //             setContactName(res.data.resultObj.contactName)
+    //         }
+    //     }
+    // );
+    setCompanyInformation(GetCompanyInformation.data.resultObj);
+    setName(GetCompanyInformation.data.resultObj.name);
+    setDescription(GetCompanyInformation.data.resultObj.description);
+    setWorkerNumber(GetCompanyInformation.data.resultObj.workerNumber);
+    setContactName(GetCompanyInformation.data.resultObj.contactName);
 
     // const userId = user.id;
     // const config = { headers: { 'Content-Type': 'application/json' } };
@@ -494,31 +509,35 @@ function ProfileCompany() {
         {/* <div className={styles.follow}>
 
                 </div> */}
-        {user?.role !== 'company' &&
+        {user?.role !== "company" && (
           <div>
             {user?.role == "user" && isFollow == false ? (
               <div className={styles.follow}>
-                <Button
+                <Tag
+                  color="geekblue"
+                  className="font-bold text-[16px] !rounded-md !px-6 !py-2"
                   onClick={handleFollowCompany}
                   type="primary"
                   style={styles.button}
                 >
                   Follow
-                </Button>
+                </Tag>
               </div>
             ) : (
               <div className={styles.follow}>
-                <Button
+                <Tag
+                  color="purple"
+                  className="font-bold text-[16px] !rounded-md !px-6 !py-2"
                   onClick={handleUnFollowCompany}
                   type="primary"
                   style={styles.button}
                 >
                   UnFollow
-                </Button>
+                </Tag>
               </div>
             )}
           </div>
-        }
+        )}
 
         {user?.role == "company" ? (
           !editName ? (
@@ -574,12 +593,17 @@ function ProfileCompany() {
           )}
 
           <div className={styles.scale}>
-            <TiGroup className={styles.scale_icon} />
-            <div className={styles.scale_title}>
+            <Image src={memberCompany} preview={false} alt="" width={38} height={38}/>
+            <div
+              className={`${styles.scale_title} !text-[18px] mt-2 !font-semibold !text-[#666]`}
+            >
               Số lượng nhân viên:{" "}
               {user?.role == "company" ? (
                 !editWorkerNumber ? (
-                  <span onDoubleClick={() => setEditWorkerNumber(true)}>
+                  <span
+                    onDoubleClick={() => setEditWorkerNumber(true)}
+                    className="!text-black"
+                  >
                     {companyInformation ? companyInformation.workerNumber : 0}{" "}
                     nhân viên
                   </span>
@@ -603,12 +627,17 @@ function ProfileCompany() {
             </div>
           </div>
           <div className={styles.contact}>
-            <RiContactsFill className={styles.contact_icon} />
-            <div className={styles.contact_title}>
+            <Image src={contact} preview={false} alt="" width={38} height={38}/>
+            <div
+              className={`${styles.contact_title} mt-2 !text-[18px] !font-semibold !text-[#666]`}
+            >
               Tên liên hệ:{" "}
               {user?.role == "company" ? (
                 !editContactName ? (
-                  <span onDoubleClick={() => setEditContactName(true)}>
+                  <span
+                    onDoubleClick={() => setEditContactName(true)}
+                    className="!text-black"
+                  >
                     {companyInformation ? companyInformation.contactName : 0}
                   </span>
                 ) : (
@@ -630,7 +659,11 @@ function ProfileCompany() {
             </div>
           </div>
           <div className={styles.images}>
-            <div className={styles.images_title}>Hình ảnh công ty</div>
+            <div
+              className={`${styles.images_title} !text-[20px] !font-semibold !text-[#666]`}
+            >
+              Hình ảnh công ty
+            </div>
             <BsCardImage className={styles.images_icon} />
             {user?.role == "company" ? (
               <BsPlusCircle
@@ -722,7 +755,65 @@ function ProfileCompany() {
               việc làm
             </p>
             <ul className={styles.job_list}>
-              {companyInformation
+              <Row gutter={[30, 30]}>
+                {companyInformation
+                  ? companyInformation?.companyRecruitments?.map(
+                      (recruitment) => (
+                        <Col span={8} key={recruitment.id}>
+                          <Link to={"/recruitment/detail/" + recruitment.id}>
+                            <Card
+                              className="!rounded-[10px] hover:shadow-lg transition-all"
+                              bodyStyle={{ padding: "10px" }}
+                            >
+                              <div className="flex items-start space-x-2">
+                                <Image
+                                  preview={false}
+                                  width={60}
+                                  height={60}
+                                  className="!rounded-[6px]"
+                                  src={
+                                    "https://localhost:5001/avatars/" +
+                                    companyInformation.companyAvatar.imagePath
+                                  }
+                                />
+                                <div className="w-full">
+                                  <div className="flex justify-between">
+                                    <span className="block font-semibold text-[16px] truncate">
+                                      {recruitment.name}
+                                    </span>
+
+                                    <Tag color="red" className=" font-semibold">
+                                      {tranferPrice(recruitment.salary)} VND
+                                    </Tag>
+                                  </div>
+                                  <span className="text-[12px] font-semibold text-[#666] italic">
+                                    {companyInformation.name}
+                                  </span>
+                                  <div className="flex items-center space-x-1 text-[#888]">
+                                    <MdDateRange className={styles.date_icon} />
+                                    <span className="text-[12px]">
+                                      {recruitment.startDay.slice(0, 10)} -{" "}
+                                      {recruitment.endDate.slice(0, 10)}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="flex space-x-2 mt-2">
+                                <Tag>
+                                  {recruitment.recruitmentBranches.map(
+                                    (city, index) =>
+                                      index === 0 ? city : ", " + city
+                                  )}
+                                </Tag>
+                              </div>
+                            </Card>
+                          </Link>
+                        </Col>
+                      )
+                    )
+                  : ""}
+              </Row>
+              {/* {companyInformation
                 ? companyInformation.companyRecruitments.map((recruitment) => (
                     <Link to={"/recruitment/detail/" + recruitment.id}>
                       <li className={styles.job}>
@@ -760,7 +851,7 @@ function ProfileCompany() {
                       </li>
                     </Link>
                   ))
-                : ""}
+                : ""} */}
             </ul>
           </div>
         </div>

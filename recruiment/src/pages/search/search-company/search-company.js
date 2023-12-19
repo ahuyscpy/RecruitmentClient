@@ -2,12 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import {
-  Form,
   Input,
-  Button,
-  message,
-  Modal,
-  Select,
   Row,
   Col,
   Image,
@@ -35,15 +30,15 @@ function SearchCompany() {
     getSearchInformation();
   }, []);
   const getSearchInformation = async () => {
-    // await axios.get(`https://localhost:5001/api/Companies/GetAllCompany`).then(
-    //     res => {
-    //         console.log(res.data.resultObj)
-    //         setCompanyList(res.data.resultObj)
-    //         setCompanySearchList(res.data.resultObj)
-    //     }
-    // );
-    setCompanyList(GetAllCompany.data.resultObj);
-    setCompanySearchList(GetAllCompany.data.resultObj);
+    await axios.get(`https://localhost:5001/api/Companies/GetAllCompany`).then(
+        res => {
+            console.log(res.data.resultObj)
+            setCompanyList(res.data.resultObj)
+            setCompanySearchList(res.data.resultObj)
+        }
+    );
+    // setCompanyList(GetAllCompany.data.resultObj);
+    // setCompanySearchList(GetAllCompany.data.resultObj);
   };
   function handleSearch(keyword) {
     if (keyword) {
