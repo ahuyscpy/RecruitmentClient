@@ -159,8 +159,8 @@ function ListRecruitment() {
       dataIndex: "careers",
       width: 200,
       fixed: "left",
-      render: (careers) => {
-        console.log('careers', careers);
+      render: (careers, record) => {
+        console.log('careers', careers, record);
         return (
           <div className="flex">
             <div className="mr-2 flex-1">
