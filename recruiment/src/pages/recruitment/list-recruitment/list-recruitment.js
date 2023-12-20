@@ -160,7 +160,7 @@ function ListRecruitment() {
       width: 200,
       fixed: "left",
       render: (careers, record) => {
-        console.log('careers', careers, record);
+        // console.log('careers', careers, record);
         return (
           <div className="flex">
             <div className="mr-2 flex-1">
@@ -176,11 +176,11 @@ function ListRecruitment() {
             <div className="flex items-center space-x-1">
               <IoIosAddCircleOutline
                 className="text-[18px]"
-                onClick={() => showModalAddCareer(careers.id)}
+                onClick={() => showModalAddCareer(record.id)}
               />
               <IoIosRemoveCircleOutline
                 className="text-[18px]"
-                onClick={() => showModalRemoveCareer(careers.id)}
+                onClick={() => showModalRemoveCareer(record.id)}
               />
             </div>
           </div>
@@ -216,8 +216,8 @@ function ListRecruitment() {
       title: "Chi nhánh",
       dataIndex: "branches",
       width: 200,
-      render: (branches) => {
-        console.log('branches', branches)
+      render: (branches, record) => {
+        // console.log('branches', branches)
         return (
           <div className="flex">
             <div className="mr-2 flex-1">
@@ -232,11 +232,11 @@ function ListRecruitment() {
             <div className="flex items-center space-x-1">
               <IoIosAddCircle
                 style={{ fontSize: "1.3rem" }}
-                onClick={() => showModalAddBranch(branches.id)}
+                onClick={() => showModalAddBranch(record.id)}
               />
               <IoIosRemoveCircle
                 style={{ fontSize: "1.3rem" }}
-                onClick={() => showModalRemoveBranch(branches.id)}
+                onClick={() => showModalRemoveBranch(record.id)}
               />
             </div>
           </div>
