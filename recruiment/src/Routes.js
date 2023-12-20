@@ -42,6 +42,7 @@ import { UserContext } from './context/userContext';
 function AppRoute() {
     const {user} = useContext(UserContext);
     console.log("user: ", user && user.role)
+    // user.role = 'company'
   return (
       <Routes>
         <Route path="/search-recruitment" element={<SearchRecruitment />}></Route>

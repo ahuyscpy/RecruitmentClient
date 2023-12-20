@@ -159,30 +159,33 @@ function ListRecruitment() {
       dataIndex: "careers",
       width: 200,
       fixed: "left",
-      render: (careers) => (
-        <div className="flex">
-          <div className="mr-2 flex-1">
-            {careers.map((career, index) => {
-              return (
-                <span key={index} className=" font-semibold">
-                  {index === careers.length - 1 ? career : career + ", "}{" "}
-                </span>
-              );
-            })}
+      render: (careers) => {
+        console.log('careers', careers);
+        return (
+          <div className="flex">
+            <div className="mr-2 flex-1">
+              {careers.map((career, index) => {
+                return (
+                  <span key={index} className=" font-semibold">
+                    {index === careers.length - 1 ? career : career + ", "}{" "}
+                  </span>
+                );
+              })}
+            </div>
+  
+            <div className="flex items-center space-x-1">
+              <IoIosAddCircleOutline
+                className="text-[18px]"
+                onClick={() => showModalAddCareer(careers.id)}
+              />
+              <IoIosRemoveCircleOutline
+                className="text-[18px]"
+                onClick={() => showModalRemoveCareer(careers.id)}
+              />
+            </div>
           </div>
-
-          <div className="flex items-center space-x-1">
-            <IoIosAddCircleOutline
-              className="text-[18px]"
-              onClick={() => showModalAddCareer(careers.id)}
-            />
-            <IoIosRemoveCircleOutline
-              className="text-[18px]"
-              onClick={() => showModalRemoveCareer(careers.id)}
-            />
-          </div>
-        </div>
-      ),
+        )
+      },
     },
     {
       title: "Cấp bậc",
@@ -213,29 +216,32 @@ function ListRecruitment() {
       title: "Chi nhánh",
       dataIndex: "branches",
       width: 200,
-      render: (branches) => (
-        <div className="flex">
-          <div className="mr-2 flex-1">
-            {branches.map((branch, index) => {
-              return (
-                <Tag index={index}>
-                  {index === branches.length - 1 ? branch : branch + ", "}{" "}
-                </Tag>
-              );
-            })}
+      render: (branches) => {
+        console.log('branches', branches)
+        return (
+          <div className="flex">
+            <div className="mr-2 flex-1">
+              {branches.map((branch, index) => {
+                return (
+                  <Tag index={index}>
+                    {index === branches.length - 1 ? branch : branch + ", "}{" "}
+                  </Tag>
+                );
+              })}
+            </div>
+            <div className="flex items-center space-x-1">
+              <IoIosAddCircle
+                style={{ fontSize: "1.3rem" }}
+                onClick={() => showModalAddBranch(branches.id)}
+              />
+              <IoIosRemoveCircle
+                style={{ fontSize: "1.3rem" }}
+                onClick={() => showModalRemoveBranch(branches.id)}
+              />
+            </div>
           </div>
-          <div className="flex items-center space-x-1">
-            <IoIosAddCircle
-              style={{ fontSize: "1.3rem" }}
-              onClick={() => showModalAddBranch(branches.id)}
-            />
-            <IoIosRemoveCircle
-              style={{ fontSize: "1.3rem" }}
-              onClick={() => showModalRemoveBranch(branches.id)}
-            />
-          </div>
-        </div>
-      ),
+        )
+      },
     },
     {
       title: "Thời hạn ứng tuyển",
