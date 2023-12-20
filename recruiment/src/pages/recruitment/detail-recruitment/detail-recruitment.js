@@ -12,6 +12,7 @@ import {
   Col,
   Image,
   Tag,
+  Divider,
 } from "antd";
 import styles from "./detail-recruitment.module.scss";
 
@@ -37,13 +38,15 @@ import detailUser from "../../../assets/images/detail-user.png";
 import detailExperice from "../../../assets/images/detail-experience.png";
 import detailBag from "../../../assets/images/detail-bag.png";
 import ItemInfo from "../../../components/detail/ItemInfo";
+import Comment from "./Comment";
 
 function DetailRecruitment() {
   const { TextArea } = Input;
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const { id } = useParams();
-    const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user"));
+  user.role = "user";
 
   const [recruitment, setRecruitment] = useState();
   const [userInformation, setUserInformation] = useState();
@@ -64,28 +67,26 @@ function DetailRecruitment() {
   }, []);
 
   const getRecruitment = async () => {
-    await axios.get(`https://localhost:5001/api/Companies/GetRecruitmentById?id=${id}`).then(
-        res => {
-            if (res.data.isSuccessed) {
-                console.log(res.data.resultObj)
-                setRecruitment(res.data.resultObj);
+      await axios.get(`https://localhost:5001/api/Companies/GetRecruitmentById?id=${id}`).then(
+          res => {
+              if (res.data.isSuccessed) {
+                  console.log(res.data.resultObj)
+                  setRecruitment(res.data.resultObj);
 
-            }
-        }
-    );
-    // setRecruitment(GetRecruitmentById.data.resultObj);
+              }
+          }
+      );
   };
   const getUserInformation = async () => {
-    await axios.get(`https://localhost:5001/api/Users/GetUserInformation?userId=${user.id}`).then(
-        res => {
-            if (res.data.isSuccessed) {
-                console.log(res.data.resultObj)
+      await axios.get(`https://localhost:5001/api/Users/GetUserInformation?userId=${user.id}`).then(
+          res => {
+              if (res.data.isSuccessed) {
+                  console.log(res.data.resultObj)
 
-                setUserInformation(res.data.resultObj)
-            }
-        }
-    );
-    // setUserInformation(GetUserInformation.data.resultObj);
+                  setUserInformation(res.data.resultObj)
+              }
+          }
+      );
   };
   const getCompanyInformation = async () => {
     await axios.get(`https://localhost:5001/api/Companies/GetCompanyInformation?companyId=${user.id}`).then(
@@ -96,7 +97,6 @@ function DetailRecruitment() {
             }
         }
     );
-    // setCompanyInformation(GetCompanyInformation.data.resultObj);
   };
 
   function tranferPrice(data) {
@@ -219,28 +219,8 @@ function DetailRecruitment() {
       message.error(data.message);
     }
   };
-  const handleSubmitChildInput = async (inputChild, id) => {
-    const config = { headers: { "Content-Type": "application/json" } };
-    const { data } = await axios.post(
-      `https://localhost:5001/api/Companies/Comment`,
-      {
-        accountId: user.id,
-        recruitmentId: recruitment.id,
-        content: inputChild,
-        subCommentId: id.toString(),
-        role: user.role,
-      },
-      config
-    );
-    if (data.isSuccessed) {
-      getRecruitment();
-    } else {
-      message.error(data.message);
-    }
-  };
 
   const RenderComment = ({ comment, index }) => {
-    const [inputChild, setInputChild] = useState("");
     return (
       <div className={styles.comment_title} key={index}>
         <div className={styles.sub_title_wrapper}>
@@ -256,68 +236,14 @@ function DetailRecruitment() {
           </div>
         </div>
         <div className={styles.sub_content}>{comment.content}</div>
-        {comment.childComments.map((childComment, index) => (
-          <div className={styles.child_title_wrapper} key={index}>
-            <div className={styles.child_header}>
-              <div className={styles.child_image_wrapper}>
-                <img
-                  src={
-                    "https://localhost:5001/avatars/" + childComment.avatarPath
-                  }
-                  className={styles.child_avatar}
-                ></img>
-              </div>
-              <div className={styles.child_name}>{childComment.name}</div>
-              <div className={styles.child_date}>
-                {timeCaculate(childComment.dateCreated)}
-              </div>
-            </div>
-            <div className={styles.child_content}>{childComment.content}</div>
-          </div>
-        ))}
-        <div className={styles.child_comment}>
-          {user.role === "company" ? (
-            <div className={styles.child_comment_image_wrapper}>
-              <img
-                src={
-                  companyInformation
-                    ? "https://localhost:5001/avatars/" +
-                      companyInformation.companyAvatar.imagePath
-                    : ""
-                }
-                className={styles.child_comment_image}
-              ></img>
-            </div>
-          ) : (
-            <div className={styles.child_comment_image_wrapper}>
-              <img
-                src={
-                  userInformation
-                    ? "https://localhost:5001/avatars/" +
-                      userInformation.userAvatar.imagePath
-                    : ""
-                }
-                className={styles.child_comment_image}
-              ></img>
-            </div>
-          )}
-          <div className={styles.input_child_comment_wrapper}>
-            <TextArea
-              value={inputChild}
-              rows={1}
-              autoSize
-              onChange={(e) => setInputChild(e.target.value)}
-              placeholder="Nhập bình luận"
-            />
-          </div>
-          <Button
-            type="primary"
-            className={styles.btn__childcomment}
-            onClick={() => handleSubmitChildInput(inputChild, comment.id)}
-          >
-            Bình luận
-          </Button>
-        </div>
+        <Comment
+          comment={comment}
+          user={user}
+          companyInformation={companyInformation}
+          recruitment={recruitment}
+          getRecruitment={getRecruitment}
+          userInformation={userInformation}
+        />
       </div>
     );
   };
@@ -388,9 +314,9 @@ function DetailRecruitment() {
                       height={40}
                       className="!rounded-[6px]"
                       src={
-                          "https://localhost:5001/avatars/" +
-                          recruitment?.avatarPath
-                        }
+                        "https://localhost:5001/avatars/" +
+                        recruitment?.avatarPath
+                      }
                     />
                     <span className="block font-semibold text-[20px] truncate">
                       {recruitment?.name}
@@ -449,8 +375,10 @@ function DetailRecruitment() {
                         width={"80%"}
                         preview={false}
                         height={"80%"}
-                        src={"https://localhost:5001/avatars/" +
-                        recruitment?.avatarPath}
+                        src={
+                          "https://localhost:5001/avatars/" +
+                          recruitment?.avatarPath
+                        }
                       />
                     </div>
                     <span className="font-bold">
@@ -497,7 +425,9 @@ function DetailRecruitment() {
                         )
                       )
                     : ""}
-                  <span className="text-[18px] font-semibold text-[#666]">Mô tả chi tiết</span>
+                  <span className="text-[18px] font-semibold text-[#666]">
+                    Mô tả chi tiết
+                  </span>
                   <p>
                     Loại công việc:{" "}
                     <span>{recruitment ? recruitment.type : ""}</span>
@@ -561,11 +491,12 @@ function DetailRecruitment() {
                 </Card>
               </Col>
             </Row>
+            <Divider />
             {user?.role === "user" || user?.role === "company" ? (
               <div>
                 <div className={styles.comment}>
                   {user?.role === "company" ? (
-                    <div className={styles.comment_image_wrapper}>
+                    <div className={` mr-2 rounded-full overflow-hidden !h-[40px] !w-[40px]`}>
                       <img
                         src={
                           companyInformation
@@ -573,11 +504,11 @@ function DetailRecruitment() {
                               companyInformation.companyAvatar.imagePath
                             : ""
                         }
-                        className={styles.comment_image}
+                        className="rounded-full w-[40px] h-[40px]"
                       ></img>
                     </div>
                   ) : (
-                    <div className={styles.comment_image_wrapper}>
+                    <div className={` mr-2 rounded-full overflow-hidden !h-[40px] !w-[40px]`}>
                       <img
                         src={
                           userInformation
@@ -585,26 +516,23 @@ function DetailRecruitment() {
                               userInformation.userAvatar.imagePath
                             : ""
                         }
-                        className={styles.comment_image}
+                        className="rounded-full w-[40px] h-[40px]"
                       ></img>
                     </div>
                   )}
-                  <div className={styles.input_comment_wrapper}>
-                    <TextArea
+                  <div className="flex items-center space-x-2">
+                    <Input
                       value={comment}
-                      rows={1}
+                      size="large"
                       autoSize
                       onChange={(e) => setComment(e.target.value)}
                       placeholder="Nhập bình luận"
+                      className="!min-w-[500px] !max-h-[500px]"
                     />
+                    <Button size="large" type="primary" onClick={handleComment}>
+                      Bình luận
+                    </Button>
                   </div>
-                  <Button
-                    type="primary"
-                    className={styles.btn_comment}
-                    onClick={handleComment}
-                  >
-                    Bình luận
-                  </Button>
                 </div>
                 <div className={styles.comment_list}>
                   {recruitment
